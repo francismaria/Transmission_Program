@@ -5,7 +5,7 @@
 
 FIFO fifo_id;
 
-char* FILE_NAME = "sender_info.txt";
+char* FILE_NAME = "/tmp/sender_info.txt";
 
 pthread_mutex_t mut;
 

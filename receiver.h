@@ -5,7 +5,7 @@
 
 FIFO fifo_id_receiver;
 
-char* FILE_NAME = "receiver_info.txt";
+char* FILE_NAME = "/tmp/receiver_info.txt";
 
 int sum = 0;
 

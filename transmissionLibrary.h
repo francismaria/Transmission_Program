@@ -6,6 +6,7 @@
 #include <errno.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <string.h>
 #include <dirent.h>
 #include <pthread.h>
 #include <sys/stat.h>

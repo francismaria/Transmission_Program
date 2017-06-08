@@ -42,14 +42,17 @@ void initCommunications(){
 void* sendNumber(void* arg){
 
 	int x = *(int*)arg;
+	char* buf = malloc(sizeof(char)*10);
 
 	pthread_mutex_lock(&mut);
+
+		sprintf(buf, "Sent: %d\n", x);
 
 		if(write(fifo_id.fd, &x, sizeof(int)) < 0){
 			perror("Error writing to FIFO.\n");
 		}
 
-		if(write(fifo_id.file_fd, &x, sizeof(int)) < 0){
+		if(write(fifo_id.file_fd, buf, strlen(buf)+1) < 0){
 			perror("Error writing to file.\n");
 		}
 

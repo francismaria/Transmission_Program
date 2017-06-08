@@ -52,7 +52,7 @@ void* sendNumber(void* arg){
 			perror("Error writing to FIFO.\n");
 		}
 
-		if(write(fifo_id.file_fd, buf, strlen(buf)+1) < 0){
+		if(write(fifo_id.file_fd, buf, strlen(buf)) < 0){
 			perror("Error writing to file.\n");
 		}
 
@@ -69,7 +69,7 @@ void createThreads(int n){
 	for(i = 0; i < n; i++){
 		int* arg = malloc(sizeof(int));
 
-		*arg = i;
+		*arg = i+1;
 
 		pthread_create(&tids[i], NULL, sendNumber, (void*)arg);
 	}

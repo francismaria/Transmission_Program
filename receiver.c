@@ -23,6 +23,44 @@ void initCommunications(){
 		exit(EXIT_FAILURE);
 	}
 
+	pthread_mutex_init(&mut, NULL);
+
+}
+
+void* operateRequests(void* arg){
+	
+	int n = *(int*)arg;
+
+	pthread_mutex_lock(&mut);
+
+	sum += n;
+
+	pthread_mutex_unlock(&mut);
+
+	return NULL;
+}
+
+void runRequests(){
+	pthread_t tids[500];		//this should be given by the SENDER!!! - 500 is just a max value
+
+	printf("I am going to start receiving requests.\n");
+
+	int* n = malloc(sizeof(int));
+
+	int k = 0, j;
+
+	while(read(fifo_id_receiver.fd, n, sizeof(int))){
+
+		pthread_create(&tids[k], NULL, operateRequests, (void*)n);
+
+		k++;			//just to keep track of how much threads exist
+	}
+
+	for(j = 0; j < k; j++){
+		pthread_join(tids[j], NULL);
+	}
+
+	printf("Total SUM: %d", sum);
 }
 
 void closeCommunications(){

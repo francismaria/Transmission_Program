@@ -77,7 +77,7 @@ void createThreads(int n){
 }
 
 void runRequests(){
-	int n, result;
+	int n;
 
 	printf("How many numbers would you like to send?\n");
 	scanf("%d",&n);

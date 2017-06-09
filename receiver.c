@@ -30,10 +30,17 @@ void initCommunications(){
 void* operateRequests(void* arg){
 	
 	int n = *(int*)arg;
+	char* buf = malloc(sizeof(char)*13);
 
 	pthread_mutex_lock(&mut);
 
-	sum += n;
+		sprintf(buf, "Received: %d\n", n);
+
+		if(write(fifo_id_receiver.file_fd, buf, strlen(buf)) < 0){
+			perror("Error writing to 'receiver_info.txt'");
+		}
+
+		sum += n;
 
 	pthread_mutex_unlock(&mut);
 

@@ -1,11 +1,11 @@
 #include "sender.h"
 
-/*TODO: runRquests().
-	
+/*	
 	This program sends through threads random numbers to another process
 	in which it has to do the sum of the sent numbers. This process also
 	has to write the sent numbers to a file.
 	
+	This is working FINE.	
  */
 
 int main(int argc, char* argv[]){
